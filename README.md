@@ -1,4 +1,15 @@
 # Zipper
-A simple python program to zip or unzip multiple directories at once.
+A python program to zip or unzip multiple directories at once.
 
-I will continue to add to the files within this repository and improve the code.
+To Run This Program
+1. Download or clone the code
+2. Open in IDE or open Zipper directory in command prompt(windows) or terminal
+(linux/mac)
+3. Enter "python zipper.py" within the terminal
+4. Follow the command prompts
+
+Planned Improvements
+- Adding persistent storage with shelve module
+- Adding GUI
+- Adding error handling
+- Ensuring it will work for multiple archive formats
