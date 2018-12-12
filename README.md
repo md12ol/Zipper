@@ -13,3 +13,4 @@ Planned Improvements
 - Adding GUI
 - Adding error handling
 - Ensuring it will work for multiple archive formats
+- Script to make a batch file to run zipper from directory with icon
