@@ -1,18 +1,35 @@
-from os import chdir, getcwd, listdir, stat, mkdir, walk
-from os.path import isfile, basename, isdir, splitext, join
-from shutil import make_archive
+import sys
 import zipfile
+from os import chdir, getcwd, listdir, mkdir, walk
+from os.path import basename, isdir, join
+from shutil import make_archive
 
 
-def main():
+def main(args):
+    loc_is_wd = False
+    loc_given = True if len(args) > 0 else False
+
     zipping = True if input("Zip (z) or UnZip (u)? ") == "z" else False
     subfolders = False  # Default
     if not zipping:  # Check sub-folders from working directory
         subfolders = True if input("Check Sub-Folders? (y/n) ") == "y" else \
             False
-    print("Current Working Directory: " + getcwd())
 
-    while True:
+    if not loc_given:
+        print("Current Working Directory: " + getcwd())
+        loc_is_wd = True if input("Is this the root director of interest? ("
+                                  "y/n)") == "y" else False
+    else:
+        print("Zipper Called From: " + args[0])
+        loc_given = True if input("Is this the root directory of interest? "
+                                  "(y/n)") == "y" else False
+        try:
+            chdir(args[0])
+        except FileNotFoundError:
+            print("Sorry!  That directory didn't seem to work.")
+            loc_given = False
+
+    while True and not loc_is_wd and not loc_given:
         path = input("Path of root directory of interest? ")
         try:
             chdir(path)
@@ -83,4 +100,4 @@ def do_unzip(dirs, path):
     pass
 
 
-main()
+main(sys.argv[1:])
